@@ -1,11 +1,22 @@
 {
-  "id": "",
+  "id": "com.yourdomain.app",
   "version": "1.0.0",
-  "vendor": "My Company",
+  "vendor": "Myapp",
   "type": "web",
   "main": "index.html",
-  "title": "new app",
+  "title": "cyshieldapp",
   "icon": "icon.png",
+  "supportTouchMode": "virtual",
+  "transparent": false,
+  "virtualTouch": {
+    "verticalThreshold": 20,
+    "horizontalThreshold": 50,
+    "positionEventOnPress": true,
+    "shortTouchThreshold": 30
+  },
+  "accessibility": {
+    "supportsAudioGuidance": true
+  },
   "requiredPermissions": [
     "time.query",
     "activity.operation"

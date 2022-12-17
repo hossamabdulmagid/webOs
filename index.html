@@ -1,90 +1,23 @@
-<!--
-Copyright (c) 2020-2022 LG Electronics Inc.
-
-SPDX-License-Identifier: Apache-2.0
--->
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello World Maado Task</title>
-    <style type="text/css">
-        body {
-            width: 100%;
-            height: 100%;
-            background-color: #202020;
-        }
+    <title>cyshield App</title>
+    <!--    <meta-->
+    <!--            http-equiv="refresh"-->
+    <!--            content="0;url=http://www.example.com/index.html"-->
+    <!--    />-->
+    <link href="index.css" rel="stylesheet">
+    <script src="./lib/spatial_navigation.js"></script>
+    <script src="./js/index.js"></script>
 
-        div {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            display: table;
-        }
-
-        h1 {
-            display: table-cell;
-            vertical-align: middle;
-            text-align: center;
-            color: #FFFFFF;
-            font-size: 40px;
-        }
-    </style>
-    <script type="text/javascript">
-        window.onload = function () {
-            var bridge = new WebOSServiceBridge();
-            /*
-             *  getTimeApi calls gettime of systemservice, a module in the platform.
-             */
-            var getTimeApi = 'luna://com.webos.service.systemservice/clock/getTime';
-            var getTimeParams = '{}';
-
-            /*
-             *  helloApi calls the hello method of js_service template provided by CLI.
-             *  In this case, the service name is used as default name "com.domain.app.service" is.
-             *  If you change this service name, you need to change the service name of the following API.
-             *
-             *  If you change the name to helloParmas as you want, the contents will be reflected on the screen.
-             */
-            var helloApi = 'luna://com.domain.app.service/hello';
-            var helloParams = '{"name":"webOS"}';
-
-            function getTime_callback(msg) {
-                var arg = JSON.parse(msg);
-                if (arg.returnValue) {
-                    console.log("[APP_NAME: example web app] GETTIME_SUCCESS UTC : " + arg.utc);
-                    //webOSSystem.PmLogString(6, "GETTIME_SUCCESS", '{"APP_NAME": "example web app"}', "UTC : " + arg.utc);
-                } else {
-                    console.error("[APP_NAME: example web app] GETTIME_FAILED errorText : " + arg.errorText);
-                    //webOSSystem.PmLogString(3, "GETTIME_FAILED", '{"APP_NAME": "example web app"}', "errorText : " + arg.errorText);
-                }
-            }
-
-            function hello_callback(msg) {
-                var arg = JSON.parse(msg);
-                if (arg.returnValue) {
-                    document.getElementById("txt_msg").innerHTML = arg.Response;
-                    console.log("[APP_NAME: example web app] CALLHELLO_SUCCESS response : " + arg.Response);
-                    console.log('hello world');
-                    //webOSSystem.PmLogString(6, "CALLHELLO_SUCCESS", '{"APP_NAME": "example web app"}', "response : " + arg.Response);
-                } else {
-                    console.error("[APP_NAME: example web app] CALLHELLO_FAILED errorText : " + arg.errorText);
-                    //webOSSystem.PmLogString(3, "CALLHELLO_FAILED", '{"APP_NAME": "example web app"}', "errorText : " + arg.errorText);
-                }
-            }
-
-            bridge.onservicecallback = getTime_callback;
-            bridge.call(getTimeApi, getTimeParams);
-            document.getElementById("txt_msg").onclick = function () {
-                bridge.onservicecallback = hello_callback;
-                bridge.call(helloApi, helloParams);
-            };
-        }
-    </script>
 </head>
 <body>
 <div>
-    <h1 id="txt_msg">Hello,World Maado Task!</h1>
+    <iframe src="https://cyshield.web.app/"></iframe>
 </div>
+<!--<script>-->
+<!--    window.location.href = 'https://cyshield.web.app/';-->
+<!--</script>-->
 </body>
+
 </html>
